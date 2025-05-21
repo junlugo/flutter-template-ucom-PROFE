@@ -56,14 +56,18 @@ class _TabScreenState extends State<TabScreen> {
             tabController.pageIndex.value = index;
           });
         },
-        backgroundColor: AppTheme.isLightTheme == false
+        backgroundColor: const Color.fromARGB(255, 250, 250, 250), // Fondo gris claro
+        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: const Color.fromARGB(255, 35, 247, 52), // Gris claro
+        selectedItemColor: const Color.fromARGB(255, 35, 247, 52), 
+        /*AppTheme.isLightTheme == false
             ? HexColor('#15141f')
             : Theme.of(context).appBarTheme.backgroundColor,
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: AppTheme.isLightTheme == false
             ? const Color(0xffA2A0A8)
             : HexColor(AppTheme.primaryColorString!).withOpacity(0.4),
-        selectedItemColor: HexColor(AppTheme.primaryColorString!),
+        selectedItemColor: HexColor(AppTheme.primaryColorString!),*/
         items: [
           BottomNavigationBarItem(
             icon: SizedBox(
@@ -71,15 +75,16 @@ class _TabScreenState extends State<TabScreen> {
               width: 20,
               child: SvgPicture.asset(
                 DefaultImages.homr,
-                color: tabController.pageIndex.value == 0
+                color: const Color.fromARGB(255, 35, 247, 52),
+                /*color: tabController.pageIndex.value == 0
                     ? HexColor(AppTheme.primaryColorString!)
                     : AppTheme.isLightTheme == false
                         ? const Color(0xffA2A0A8)
                         : HexColor(AppTheme.primaryColorString!)
-                            .withOpacity(0.4),
+                            .withOpacity(0.4),*/
               ),
             ),
-            label: "home",
+            label: "Inicio",
           ),
           BottomNavigationBarItem(
             icon: SizedBox(
@@ -87,15 +92,16 @@ class _TabScreenState extends State<TabScreen> {
               width: 20,
               child: SvgPicture.asset(
                 DefaultImages.chart,
-                color: tabController.pageIndex.value == 1
+                color: const Color.fromARGB(255, 35, 247, 52),
+                /*color: tabController.pageIndex.value == 1
                     ? HexColor(AppTheme.primaryColorString!)
                     : AppTheme.isLightTheme == false
                         ? const Color(0xffA2A0A8)
                         : HexColor(AppTheme.primaryColorString!)
-                            .withOpacity(0.4),
+                            .withOpacity(0.4),*/
               ),
             ),
-            label: "Statistics",
+            label: "Reservas",
           ),
           BottomNavigationBarItem(
               icon: SizedBox(
@@ -103,30 +109,32 @@ class _TabScreenState extends State<TabScreen> {
                 width: 20,
                 child: SvgPicture.asset(
                   DefaultImages.card,
-                  color: tabController.pageIndex.value == 2
+                  color: const Color.fromARGB(255, 35, 247, 52),
+                  /*color: tabController.pageIndex.value == 2
                       ? HexColor(AppTheme.primaryColorString!)
                       : AppTheme.isLightTheme == false
-                          ? const Color(0xffA2A0A8)
+                          ? const Color.fromARGB(255, 93, 93, 94)
                           : HexColor(AppTheme.primaryColorString!)
-                              .withOpacity(0.4),
+                              .withOpacity(0.4),*/
                 ),
               ),
-              label: "Card"),
+              label: "Partidos"),
           BottomNavigationBarItem(
               icon: SizedBox(
                 height: 20,
                 width: 20,
                 child: SvgPicture.asset(
                   DefaultImages.user,
-                  color: tabController.pageIndex.value == 3
+                  color: const Color.fromARGB(255, 35, 247, 52),
+                  /*color: tabController.pageIndex.value == 3
                       ? HexColor(AppTheme.primaryColorString!)
                       : AppTheme.isLightTheme == false
                           ? const Color(0xffA2A0A8)
                           : HexColor(AppTheme.primaryColorString!)
-                              .withOpacity(0.4),
+                              .withOpacity(0.4),*/
                 ),
               ),
-              label: "profile"),
+              label: "Perfil"),
         ],
 
         // height: 60,
