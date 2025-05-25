@@ -1,0 +1,6 @@
+[
+  { "codigo": 11, "descripcion": "Reunión de trabajo" },
+  { "codigo": 12, "descripcion": "Compra" },
+  { "codigo": 13, "descripcion": "Trámite bancario" },
+  { "codigo": 14, "descripcion": "Evento" }
+]

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:finpay/controller/reserva_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,8 @@ void main() async {
             Colors.transparent //or set color with: Color(0xFF0000FF)
         ),
   );
+  Get.put(ReservaController());
+
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

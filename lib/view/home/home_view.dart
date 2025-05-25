@@ -220,7 +220,7 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      focusColor: Colors.transparent,
+                      focusColor: const Color.fromARGB(0, 196, 52, 52),
                       highlightColor: Colors.transparent,
                       hoverColor: Colors.transparent,
                       splashColor: Colors.transparent,
@@ -251,7 +251,7 @@ class HomeView extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       color: AppTheme.isLightTheme == false
-                          ? const Color(0xff211F32)
+                          ? const Color.fromARGB(255, 35, 247, 52)//Color(0xff211F32)
                           : const Color(0xffFFFFFF),
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [

@@ -1,5 +1,111 @@
-// ignore_for_file: deprecated_member_use
+import 'package:finpay/config/textstyle.dart';
+import 'package:finpay/controller/home_controller.dart';
+import 'package:finpay/controller/reserva_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+class StatisticsView extends StatefulWidget {
+  const StatisticsView({Key? key}) : super(key: key);
+
+  @override
+  State<StatisticsView> createState() => _StatisticsViewState();
+}
+
+class _StatisticsViewState extends State<StatisticsView> {
+  final homeController = Get.put(HomeController());
+  final reservaController = Get.find<ReservaController>(); // Asegúrate de inicializarlo en otro lugar
+
+  @override
+  void initState() {
+    homeController.customInit();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: Get.height,
+      width: Get.width,
+      color: AppTheme.isLightTheme == false
+          ? HexColor('#15141f')
+          : HexColor(AppTheme.primaryColorString!).withOpacity(0.05),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Filtros de días y botones como en tu código original...
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Historial de Reservas", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 10),
+                  /*Obx(() {
+                    final historial = reservaController.historialReservas;
+                    if (historial.isEmpty) {
+                      return const Text("No hay reservas realizadas.");
+                    }
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: historial.length,
+                      itemBuilder: (context, index) {
+                        final reserva = historial[index];
+                        return Card(
+                          margin: const EdgeInsets.symmetric(vertical: 6),
+                          child: ListTile(
+                            title: Text(
+                              "Auto: ${reserva.auto.chapa} - Piso: ${reserva.piso.descripcion}",
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,*/
+                              Obx(() {
+  final historial = reservaController.historialReservas;
+  if (historial.isEmpty) {
+    return const Center(child: Text("No hay reservas todavía."));
+  }
+  return ListView.builder(
+    itemCount: historial.length,
+    itemBuilder: (context, index) {
+      final reserva = historial[index];
+      return Card(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                              Text("Auto: ${reserva.auto}"),
+                              Text("Piso: ${reserva.piso}"),
+                                Text("Lugar: ${reserva.lugar.descripcionLugar}"),
+                                Text("Inicio: ${reserva.inicio}"),
+                                Text("Salida: ${reserva.salida}"),
+                                Text("Monto: ${reserva.monto} Gs"),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Lista de canchas original (opcional mantenerla o reemplazarla)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+/*
 import 'package:finpay/config/images.dart';
 import 'package:finpay/config/textstyle.dart';
 import 'package:finpay/controller/home_controller.dart';
@@ -38,8 +144,146 @@ class _StatisticsViewState extends State<StatisticsView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Cerca mío", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 10),
+                  // Filtro de días
+                  SizedBox(
+                    height: 60,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 7,
+                      itemBuilder: (_, index) {
+                        final now = DateTime.now().add(Duration(days: index));
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Column(
+                            children: [
+                              Text(
+                                ['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM'][now.weekday % 7],
+                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top: 5),
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                decoration: BoxDecoration(
+                                  color: index == 0 ? Colors.green : Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  '${now.day.toString().padLeft(2, '0')} ${["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"][now.month - 1]}',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: index == 0 ? Colors.white : Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  // Horario y duración
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Desde las 17:00"),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          child: const Text("2 horas"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Lista de canchas
+            Expanded(
+              child: ListView.builder(
+                itemCount: 2, // Puedes enlazar esto con tu controlador
+                itemBuilder: (_, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Card(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      elevation: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                            child: Image.asset(
+                              'assets/images/cancha${index + 1}.jpg', // Reemplazar con tus imágenes reales
+                              height: 160,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  index == 0 ? "Recoleta" : "Mburicao",
+                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.location_on, size: 14, color: Colors.grey),
+                                    SizedBox(width: 4),
+                                    Text("0.6 km - Asunción", style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    for (var hour in ["17:00", "18:00", "22:00"])
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 8),
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          child: Text(hour),
+                                        ),
+                                      ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+}
+}*/
+
+
+
+/*            Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -360,3 +604,4 @@ class _StatisticsViewState extends State<StatisticsView> {
     );
   }
 }
+*/

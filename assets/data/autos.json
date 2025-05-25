@@ -2,13 +2,13 @@
   {
     "chapa": "ABC123",
     "marca": "Toyota",
-    "modelo": "Corolla",
+    "modelo": "Coro",
     "chasis": "CH123456",
     "clienteId": "cliente_1"
   },
   {
     "chapa": "DEF456",
-    "marca": "Chevrolet",
+    "marca": "Chevro",
     "modelo": "Onix",
     "chasis": "CH654321",
     "clienteId": "cliente_1"
@@ -16,8 +16,22 @@
   {
     "chapa": "GHI789",
     "marca": "Ford",
-    "modelo": "Fiesta",
+    "modelo": "FA",
     "chasis": "CH987654",
+    "clienteId": "cliente_1"
+  },
+  {
+    "chapa": "LAM01",
+    "marca": "Lambo",
+    "modelo": "SVJ",
+    "chasis": "LA988542",
+    "clienteId": "cliente_1"
+  },
+  {
+    "chapa": "ROY01",
+    "marca": "Rolls",
+    "modelo": "PH",
+    "chasis": "RR003251",
     "clienteId": "cliente_1"
   }
 ]
